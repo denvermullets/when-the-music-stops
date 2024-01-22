@@ -1,0 +1,63 @@
+<%= render 'banner' %>
+<!-- forum index box -->
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100'>
+    Forum Index
+  </div>
+</div>
+<!-- forums index view -->
+<div class='flex flex-col w-full border-b border-gray-700'>
+  <div class='bg-zinc-950 px-14'>
+    <div class='border-l border-r border-gray-700 bg-zinc-950 '>
+      <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
+        <div class='border-gray-700 text-slate-100 flex flex-row'>
+          <div class='basis-2/4 flex flex-col justify-center py-12 px-12'>
+            <h1 class='text-5xl'>When the Music Stops</h1>
+            <h1 class='text-lg'>Most recent post was made on Wed at 4:32 PM EST</h1>
+          </div>
+          <!-- forums lists -->
+          <% forums.each_with_index do |forum, index| %>
+            <!-- styling is slightly different if it's the right column -->
+            <% if index == 0 %>
+              <div class="basis-1/4 flex-col items-center justify-center" name='left-column'>
+                <div class='py-8 border-l border-r -mt-1 border-gray-700 p-4' >
+                  <h1 class='text-2xl'><%= forum.name %></h1>
+                </div>
+                <% forum.sub_forums.each do |sub_forum| %>
+                  <div class=' border-l border-r border-t border-gray-700 p-4 '>
+                    <h1 class='text-md'>
+                      <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                    </h1>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="basis-1/4 flex-col items-center justify-center" name='right-column'>
+                <div class='py-8 -mt-1 border-gray-700 p-4' >
+                  <h1 class='text-2xl'><%= forum.name %></h1>
+                </div>
+                <% forum.sub_forums.each_with_index do |sub_forum, index| %>
+                  <% if index != forum.sub_forums.length - 1%>
+                    <div class=' border-t  border-gray-700 p-4 '>
+                      <h1 class='text-md'>
+                        <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                      </h1>
+                    </div>
+                  <% else %>
+                    <!-- adding a border on the bottom for the right column, last element -->
+                    <div class=' border-t border-b  border-gray-700 p-4'>
+                      <h1 class='text-md'>
+                        <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                      </h1>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'footer' %>

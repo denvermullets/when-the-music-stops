@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyText
+  forum: one
+  user: one
+  SubForum: one
+
+two:
+  title: MyString
+  body: MyText
+  forum: two
+  user: two
+  SubForum: two

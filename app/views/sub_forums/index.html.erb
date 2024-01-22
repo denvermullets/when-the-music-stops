@@ -1,0 +1,47 @@
+<%= render 'forums/banner' %>
+<!-- forum index box -->
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100'>
+    <%= sub_forum.name %>
+  </div>
+</div>
+<!-- topics index view -->
+<div class='flex flex-col w-full border-b border-gray-700'>
+  <div class='bg-zinc-950 px-14'>
+    <div class='border-l border-r border-gray-700 bg-zinc-950 '>
+      <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
+        <div class='border-gray-700 text-slate-100 flex flex-col'>
+          <!-- topics lists -->
+          <div class="w-full flex-col items-center justify-center" name='left-column'>
+            <div class='py-6 border-gray-700 px-10' >
+              <h1 class='text-2xl'>Topics</h1>
+            </div>
+            <% topics.each_with_index do |topic, index| %>
+              <div class='border-t border-gray-700 px-10 py-4 flex flex-col space-y-2'>
+                <h1 class='text-sm'>
+                  <%= link_to topic.title, topic_path(topic) %>
+                </h1>
+                <h5 class='text-xs'>by <%= topic.user.username %>
+                  <% if topic.created_at > 24.hours.ago %>
+                    <%= time_ago_in_words(topic.created_at) + " ago" %>
+                  <% else %>
+                    <%= your_model.created_at.strftime("%b %d, %Y") %>
+                  <% end %>
+                </h5>
+              </div>
+              <% if index === topics.length - 1%>
+                <div class='border-t border-gray-700 p-4 '>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100 h-10'>
+  </div>
+</div>
+<%= render 'forums/footer' %>
