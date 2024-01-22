@@ -26,7 +26,7 @@
                 <% forum.sub_forums.each do |sub_forum| %>
                   <div class=' border-l border-r border-t border-gray-700 p-4 '>
                     <h1 class='text-md'>
-                      <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                      <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                     </h1>
                   </div>
                 <% end %>
@@ -40,14 +40,14 @@
                   <% if index != forum.sub_forums.length - 1%>
                     <div class=' border-t  border-gray-700 p-4 '>
                       <h1 class='text-md'>
-                        <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                       </h1>
                     </div>
                   <% else %>
                     <!-- adding a border on the bottom for the right column, last element -->
                     <div class=' border-t border-b  border-gray-700 p-4'>
                       <h1 class='text-md'>
-                        <%= link_to sub_forum.name, sub_forum_path(sub_forum) %>
+                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                       </h1>
                     </div>
                   <% end %>

@@ -12,10 +12,12 @@ forums = Forum.all
 # only run if empty
 if forums.length < 2
   user = User.create(username: 'denvermullets')
+  puts 'user created'
   forum_one = Forum.create(name: 'Music')
   forum_two = Forum.create(name: 'General')
+  puts 'forums created'
 
-  sub_forum_one = SubForum.create(name: 'Ambient / Experiemental', forum: forum_one)
+  sub_forum_one = SubForum.create(name: 'Ambient / Experimental', forum: forum_one)
   sub_forum_two = SubForum.create(name: 'Electronica / IDM', forum: forum_one)
   sub_forum_three = SubForum.create(name: 'Punk / Hardcore / Post Hardcore', forum: forum_one)
   sub_forum_four = SubForum.create(name: 'Post-Rock', forum: forum_one)
@@ -29,6 +31,7 @@ if forums.length < 2
   sub_forum_eleven = SubForum.create(name: 'Real Discussion', forum: forum_two)
   sub_forum_twelve = SubForum.create(name: 'Entertainment', forum: forum_two)
   sub_forum_thirteen = SubForum.create(name: 'Off Topic', forum: forum_two)
+  puts 'sub forums created'
 
   topic_one = Topic.create(title: 'This is Topic 1', body: 'This is a topic body', forum: forum_one, user:, sub_forum: sub_forum_one)
   topic_two = Topic.create(title: 'This is Topic 2', body: 'This is a topic body', forum: forum_one, user:, sub_forum: sub_forum_two)
@@ -44,4 +47,18 @@ if forums.length < 2
   topic_eleven = Topic.create(title: 'This is Topic 11', body: 'This is a topic body', forum: forum_two, user:, sub_forum: sub_forum_eleven)
   topic_twelve = Topic.create(title: 'This is Topic 12', body: 'This is a topic body', forum: forum_two, user:, sub_forum: sub_forum_twelve)
   topic_thirteen = Topic.create(title: 'This is Topic 13', body: 'This is a topic body', forum: forum_two, user:, sub_forum: sub_forum_thirteen)
+  puts 'topics created'
+
+  Comment.create(body: 'this is a comment body 1', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 2', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 3', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 4', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 5', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 6', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 7', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 8', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 9', topic: topic_one, user:)
+  Comment.create(body: 'this is a comment body 10', topic: topic_one, user:)
+
+  puts 'done'
 end

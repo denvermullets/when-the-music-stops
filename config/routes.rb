@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   # Defines the root path route ('/')
   root 'forums#index'
 
-  resources :forums
-  resources :sub_forums, path: 'sub-forums'
-  resources :topics
+  # /forums/forum-slug/sub-forum-slug/topic-slug
+  # eg: /forums/music/ambient-experimental/sigur-ros
+  # overwriting the path to achieve this structure of url
+  resources :forums, param: :slug do
+    resources :sub_forums, path: '/', param: :slug do
+      # resources :topics, path: 'topic', param: :slug
+    end
+  end
+
+  get '/forums/:forum_slug/:sub_forum_slug/:slug', to: 'topics#show', as: :forum_sub_forum_topic
 end

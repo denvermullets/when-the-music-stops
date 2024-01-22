@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_19_222234) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_114124) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_222234) do
     t.string "access"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_forums_on_slug", unique: true
   end
 
   create_table "sub_forums", force: :cascade do |t|
@@ -37,7 +39,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_222234) do
     t.string "access"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["forum_id"], name: "index_sub_forums_on_forum_id"
+    t.index ["slug"], name: "index_sub_forums_on_slug", unique: true
   end
 
   create_table "topics", force: :cascade do |t|
@@ -49,7 +53,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_222234) do
     t.boolean "is_locked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["forum_id"], name: "index_topics_on_forum_id"
+    t.index ["slug"], name: "index_topics_on_slug", unique: true
     t.index ["sub_forum_id"], name: "index_topics_on_sub_forum_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
