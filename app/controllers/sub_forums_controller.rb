@@ -1,7 +1,7 @@
 class SubForumsController < ApplicationController
   def show
-    topics = Topic.where(sub_forum_id: params[:id])
-    sub_forum = SubForum.find(params[:id])
+    sub_forum = SubForum.find_by(slug: params[:slug])
+    topics = Topic.where(sub_forum_id: sub_forum.id)
 
     render :index, locals: { topics:, sub_forum: }
   end

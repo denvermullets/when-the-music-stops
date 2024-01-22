@@ -1,0 +1,85 @@
+<%= render 'forums/banner' %>
+<!-- topic box -->
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100'>
+    Page 1 of 10
+  </div>
+</div>
+<!-- comments index view -->
+<div class='flex flex-col w-full border-b border-gray-700'>
+  <div class='bg-zinc-950 px-14'>
+    <div class='border-l border-r border-gray-700 bg-zinc-950 '>
+      <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
+        <div class='border-gray-700 text-slate-100 flex flex-col'>
+          <!-- topic post -->
+          <div class="w-full flex flex-row">
+            <div class='py-6 border-gray-700 px-10 w-64 flex flex-col border-r ' >
+              <div class='w-20 h-20 bg-gray-300 '>image</div>
+              <h5 class='text-md mt-2'><%= topic.user.username %></h5>
+              <h5 class='text-xs'>Title</h5>
+              <h5 class='text-xs'>Posts: 2,305</h5>
+              <h5 class='text-xs'>Joined: <%= topic.user.created_at.strftime("%b %d, %Y") %></h5>
+              <h5 class='text-xs'>Location: nowhereville</h5>
+            </div>
+            <div class='border-gray-700 w-full flex-col'>
+              <div class='py-2 px-4 border-gray-700 border-b'>
+                <h1 class='text-2xl'><%= topic.title %></h1>
+                <h5 class='text-xs'>
+                  by <%= topic.user.username %>
+                  <% if topic.created_at > 24.hours.ago %>
+                    <%= time_ago_in_words(topic.created_at) + " ago" %>
+                  <% else %>
+                    on <%= topic.created_at.strftime("%b %d, %Y") %>
+                  <% end %>
+                </h5>
+              </div>
+              <div class='p-4'>
+                <%= topic.body %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- comment post -->
+    <% comments.map do |comment| %>
+      <div class='border-l border-r border-gray-700 bg-zinc-950 '>
+        <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
+          <div class='border-gray-700 text-slate-100 flex flex-col'>
+            <div class="w-full flex flex-row">
+              <div class='py-6 border-gray-700 px-10 w-64 flex flex-col border-r ' >
+                <div class='w-20 h-20 bg-gray-300 '>image</div>
+                <h5 class='text-md mt-2'><%= comment.user.username %></h5>
+                <h5 class='text-xs'>Title</h5>
+                <h5 class='text-xs'>Posts: 2,305</h5>
+                <h5 class='text-xs'>Joined: <%= comment.user.created_at.strftime("%b %d, %Y") %></h5>
+                <h5 class='text-xs'>Location: nowhereville</h5>
+              </div>
+              <div class='border-gray-700 w-full flex-col'>
+                <div class='py-2 px-4 border-gray-700 border-b'>
+                  <h1 class='text-lg'>re: <%= topic.title %></h1>
+                  <h5 class='text-xs'>
+                    by <%= comment.user.username %>
+                    <% if comment.created_at > 24.hours.ago %>
+                      <%= time_ago_in_words(comment.created_at) + " ago" %>
+                    <% else %>
+                      on <%= comment.created_at.strftime("%b %d, %Y") %>
+                    <% end %>
+                  </h5>
+                </div>
+                <div class='p-4'>
+                  <%= comment.body %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100 h-10'>
+  </div>
+</div>
+<%= render 'forums/footer' %>
