@@ -1,4 +1,4 @@
-class TopicsController < ApplicationController
+class CommentsController < ApplicationController
   def create
     # don't forget to handle error for validation of uniqueness
   end

@@ -2,6 +2,7 @@ class Topic < ApplicationRecord
   belongs_to :forum
   belongs_to :user
   belongs_to :sub_forum
+  has_many :comments
 
   validates :slug, uniqueness: true
 
