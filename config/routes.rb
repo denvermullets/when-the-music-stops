@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   # get '/forums/:forum_slug/:sub_forum_slug/:slug', to: 'topics#show', as: :forum_sub_forum_topic
 
-
   resources :forums, param: :slug, path: 'forums'
   get '/forums/:forum_slug', to: 'sub_forums#index', as: :forum_sub_forums
   get '/forums/:forum_slug/:sub_forum_slug', to: 'sub_forums#show', as: :forum_sub_forum
@@ -37,5 +36,4 @@ Rails.application.routes.draw do
   delete '/forums/:forum_slug/:sub_forum_slug/:topic_slug', to: 'topics#destroy'
 
   post '/forums/:forum_slug/:sub_forum_slug/:topic_slug/comments', to: 'comments#create', as: :create_topic_comment
-
 end
