@@ -1,15 +1,22 @@
 class CommentsController < ApplicationController
   def create
-    # don't forget to handle error for validation of uniqueness
+    comment = Comment.new(comment_params)
+
+    if comment.save
+      redirect_to forum_sub_forum_topic_path(slug: comment.topic.slug)
+    else
+      topic = Topic.find_by(slug: params[:topic_slug])
+      comments = Comment.where(topic:)
+      respond_to do |format|
+        format.html { render 'topics/show', locals: { topic:, comments: } }
+        format.turbo_stream
+      end
+    end
   end
 
-  def index
-  end
+  private
 
-  def show
-    topic = Topic.find_by(slug: params[:topic_slug])
-    comments = Comment.where(topic:)
-
-    render :show, locals: { topic:, comments: }
+  def comment_params
+    params.require(:comment).permit(:body, :topic_id, :user_id)
   end
 end
