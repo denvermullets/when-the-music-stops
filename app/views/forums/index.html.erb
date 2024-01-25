@@ -25,8 +25,8 @@
                 </div>
                 <% forum.sub_forums.each do |sub_forum| %>
                   <div class='p-4 border-t border-gray-700 md:border-l md:border-r '>
-                    <h1 class='text-md hover:text-sky-500'>
-                      <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
+                    <h1 class='text-md'>
+                      <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum), class: 'hover:text-sky-500' %>
                     </h1>
                   </div>
                 <% end %>
@@ -39,15 +39,15 @@
                 <% forum.sub_forums.each_with_index do |sub_forum, index| %>
                   <% if index != forum.sub_forums.length - 1%>
                     <div class='p-4 border-t border-gray-700 '>
-                      <h1 class='text-md'>
-                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
+                      <h1 class='text-md hover:text-sky-500 '>
+                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum), class: 'hover:text-sky-500' %>
                       </h1>
                     </div>
                   <% else %>
                     <!-- adding a border on the bottom for the right column, last element -->
                     <div class='p-4 border-t border-gray-700 md:border-b '>
-                      <h1 class='text-md'>
-                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
+                      <h1 class='text-md hover:text-sky-500 '>
+                        <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum), class: 'hover:text-sky-500' %>
                       </h1>
                     </div>
                   <% end %>

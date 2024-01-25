@@ -1,20 +1,20 @@
 <nav class='fixed top-0 left-0 z-20 w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
   <div class='flex flex-row items-center justify-between px-4 py-2 mx-auto space-x-4 border-l border-r border-gray-700 text-slate-100'>
-    <div>
+    <div class='hover:text-sky-500 '>
       <%= link_to 'when the music stops', root_path%>
     </div>
     <div class='flex flex-row space-x-4 '>
       <% if current_user %>
         <div><%= current_user.username %></div>
         <div>
-          <%= button_to 'logout', logout_path, method: :delete, form: { "data-turbo": "false" } %>
+          <%= button_to 'logout', logout_path, method: :delete, form: { "data-turbo": "false" }, class: 'hover:text-sky-500'%>
         </div>
       <% else %>
         <div>
-          <%= link_to 'login', login_path %>
+          <%= link_to 'login', login_path, class: 'hover:text-sky-500' %>
         </div>
         <div>
-          <%= link_to 'sign up', user_sign_up_path %>
+          <%= link_to 'sign up', user_sign_up_path, class: 'hover:text-sky-500' %>
         </div>
       <% end %>
     </div>
