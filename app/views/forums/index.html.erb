@@ -1,51 +1,51 @@
 <%= render 'banner' %>
 <!-- forum index box -->
-<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
-  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100'>
+<div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
+  <div class='flex flex-row justify-end w-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
     Forum Index
   </div>
 </div>
 <!-- forums index view -->
 <div class='flex flex-col w-full border-b border-gray-700'>
-  <div class='bg-zinc-950 px-14'>
+  <div class='px-2 bg-zinc-950 md:px-14'>
     <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-      <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
-        <div class='border-gray-700 text-slate-100 flex flex-row'>
-          <div class='basis-2/4 flex flex-col justify-center py-12 px-12'>
-            <h1 class='text-5xl'>When the Music Stops</h1>
-            <h1 class='text-lg'>Most recent post was made on Wed at 4:32 PM EST</h1>
+      <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
+        <div class='flex flex-col border-gray-700 md:flex-row text-slate-100'>
+          <div class='flex flex-col justify-center p-4 md:p-12 basis-2/4'>
+            <h1 class='text-2xl md:text-5xl'>When the Music Stops</h1>
+            <h1 class='text-sm md:text-lg'>Most recent post was made on Wed at 4:32 PM EST</h1>
           </div>
           <!-- forums lists -->
           <% forums.each_with_index do |forum, index| %>
             <!-- styling is slightly different if it's the right column -->
             <% if index == 0 %>
-              <div class="basis-1/4 flex-col items-center justify-center" name='left-column'>
-                <div class='py-8 border-l border-r -mt-1 border-gray-700 p-4' >
+              <div class="flex-col items-center justify-center basis-1/4" name='left-column'>
+                <div class='p-4 -mt-1 border-gray-700 md:border-r md:border-l md:p-4 md:py-8' >
                   <h1 class='text-2xl'><%= forum.name %></h1>
                 </div>
                 <% forum.sub_forums.each do |sub_forum| %>
-                  <div class=' border-l border-r border-t border-gray-700 p-4 '>
-                    <h1 class='text-md'>
+                  <div class='p-4 border-t border-gray-700 md:border-l md:border-r '>
+                    <h1 class='text-md hover:text-sky-500'>
                       <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                     </h1>
                   </div>
                 <% end %>
               </div>
             <% else %>
-              <div class="basis-1/4 flex-col items-center justify-center" name='right-column'>
-                <div class='py-8 -mt-1 border-gray-700 p-4' >
+              <div class="flex-col items-center justify-center basis-1/4" name='right-column'>
+                <div class='p-4 py-8 -mt-1 border-gray-700' >
                   <h1 class='text-2xl'><%= forum.name %></h1>
                 </div>
                 <% forum.sub_forums.each_with_index do |sub_forum, index| %>
                   <% if index != forum.sub_forums.length - 1%>
-                    <div class=' border-t  border-gray-700 p-4 '>
+                    <div class='p-4 border-t border-gray-700 '>
                       <h1 class='text-md'>
                         <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                       </h1>
                     </div>
                   <% else %>
                     <!-- adding a border on the bottom for the right column, last element -->
-                    <div class=' border-t border-b  border-gray-700 p-4'>
+                    <div class='p-4 border-t border-gray-700 md:border-b '>
                       <h1 class='text-md'>
                         <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum) %>
                       </h1>

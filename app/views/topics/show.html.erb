@@ -1,28 +1,28 @@
 <%= render 'forums/banner' %>
 <!-- topic box -->
-<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
-  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100'>
+<div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
+  <div class='flex flex-row justify-end w-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
     Page 1 of 10
   </div>
 </div>
 <!-- comments index view -->
 <div class='flex flex-col w-full border-b border-gray-700'>
-  <div class='bg-zinc-950 px-14'>
+  <div class='px-2 bg-zinc-950 md:px-14'>
     <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-      <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
-        <div class='border-gray-700 text-slate-100 flex flex-col'>
+      <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
+        <div class='flex flex-col border-gray-700 text-slate-100'>
           <!-- topic post -->
-          <div class="w-full flex flex-row">
-            <div class='py-6 border-gray-700 px-10 w-64 flex flex-col border-r ' >
+          <div class="flex flex-row w-full">
+            <div class='flex-col hidden w-64 px-10 py-6 border-r border-gray-700 md:flex ' >
               <div class='w-20 h-20 bg-gray-300 '>image</div>
-              <h5 class='text-md mt-2'><%= topic.user.username %></h5>
+              <h5 class='mt-2 text-md'><%= topic.user.username %></h5>
               <h5 class='text-xs'>Title</h5>
               <h5 class='text-xs'>Posts: 2,305</h5>
               <h5 class='text-xs'>Joined: <%= topic.user.created_at.strftime("%b %d, %Y") %></h5>
               <h5 class='text-xs'>Location: nowhereville</h5>
             </div>
-            <div class='border-gray-700 w-full flex-col'>
-              <div class='py-2 px-4 border-gray-700 border-b'>
+            <div class='flex-col w-full border-gray-700'>
+              <div class='px-4 py-2 border-gray-700 md:border-b'>
                 <h1 class='text-2xl'><%= topic.title %></h1>
                 <h5 class='text-xs'>
                   by <%= topic.user.username %>
@@ -44,19 +44,19 @@
     <!-- comment post -->
     <% comments.map do |comment| %>
       <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-        <div class='p-px rounded-full overflow-hidden bg-gradientTopRight ring-1 ring-gray-700'>
-          <div class='border-gray-700 text-slate-100 flex flex-col'>
-            <div class="w-full flex flex-row">
-              <div class='py-6 border-gray-700 px-10 w-64 flex flex-col border-r ' >
-                <div class='w-20 h-20 bg-gray-300 '>image</div>
-                <h5 class='text-md mt-2'><%= comment.user.username %></h5>
+        <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
+          <div class='flex flex-col border-gray-700 text-slate-100'>
+            <div class="flex flex-row w-full">
+              <div class='flex-col hidden w-64 px-2 py-6 border-r border-gray-700 md:flex md:px-10 ' >
+                <div class='hidden w-20 h-20 bg-gray-300 md:block '>image</div>
+                <h5 class='mt-2 text-md'><%= comment.user.username %></h5>
                 <h5 class='text-xs'>Title</h5>
                 <h5 class='text-xs'>Posts: 2,305</h5>
                 <h5 class='text-xs'>Joined: <%= comment.user.created_at.strftime("%b %d, %Y") %></h5>
                 <h5 class='text-xs'>Location: nowhereville</h5>
               </div>
-              <div class='border-gray-700 w-full flex-col'>
-                <div class='py-2 px-4 border-gray-700 border-b'>
+              <div class='flex-col w-full border-gray-700'>
+                <div class='px-4 py-2 border-gray-700 md:border-b'>
                   <h1 class='text-lg'>re: <%= topic.title %></h1>
                   <h5 class='text-xs'>
                     by <%= comment.user.username %>
@@ -78,8 +78,8 @@
     <% end %>
   </div>
 </div>
-<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
-  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l justify-end py-2 px-4 text-slate-100 h-10'>
+<div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
+  <div class='flex flex-row justify-end w-full h-10 px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
   </div>
 </div>
 <!-- -->
@@ -87,8 +87,8 @@
 </div>
 <% if current_user %>
   <%= form_with scope: :comment, url: create_topic_comment_path, local: true do |form| %>
-    <div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
-      <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l py-2 px-4 text-slate-100 h-full'>
+    <div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
+      <div class='flex flex-row w-full h-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
         <div class='flex flex-col w-full p-4 space-y-4 md:flex-row md:space-x-8 md:space-y-0'>
           <div class='flex flex-col w-full space-y-4'>
             <%= form.text_area :body,
@@ -98,9 +98,9 @@
             <%= form.hidden_field :topic_id, value: topic.id %>
             <%= form.hidden_field :user_id, value: current_user.id %>
           </div>
-          <div class='basis-1/4 justify-center items-center flex'>
+          <div class='flex items-center justify-center basis-1/4'>
             <%= form.submit "submit",
-            class: "bg-none border border-sky-500 hover:border-sky-700 hover:text-sky-700 text-sky-500 font-bold py-2 px-4 rounded-full cursor-pointer w-full h-16 md:h-24"
+            class: "bg-none border border-sky-500 hover:border-sky-700 hover:text-sky-700 text-sky-500 font-bold py-2 px-4 md:rounded-full cursor-pointer w-full h-16 md:h-24"
           %>
           </div>
         </div>
