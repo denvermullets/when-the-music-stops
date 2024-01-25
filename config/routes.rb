@@ -36,4 +36,11 @@ Rails.application.routes.draw do
   delete '/forums/:forum_slug/:sub_forum_slug/:topic_slug', to: 'topics#destroy'
 
   post '/forums/:forum_slug/:sub_forum_slug/:topic_slug/comments', to: 'comments#create', as: :create_topic_comment
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
+  get 'sign-up', to: 'users#new', as: :user_sign_up
+  post 'sign-up', to: 'users#create', as: :user_create
 end

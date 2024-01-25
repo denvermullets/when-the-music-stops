@@ -4,12 +4,19 @@
       <%= link_to 'when the music stops', root_path%>
     </div>
     <div class='flex flex-row space-x-4 '>
-      <div>
-        Login
-      </div>
-      <div>
-        Sign up
-      </div>
+      <% if current_user %>
+        <div><%= current_user.username %></div>
+        <div>
+          <%= button_to 'logout', logout_path, method: :delete, form: { "data-turbo": "false" } %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to 'login', login_path %>
+        </div>
+        <div>
+          <%= link_to 'sign up', user_sign_up_path %>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
