@@ -1,25 +1,25 @@
 <%= render 'forums/banner' %>
 <!-- forum index box -->
-<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+<div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
   <div class='flex flex-row justify-end w-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
     <%= sub_forum.name %>
   </div>
 </div>
 <!-- topics index view -->
 <div class='flex flex-col w-full border-b border-gray-700'>
-  <div class='bg-zinc-950 px-14'>
+  <div class='px-2 bg-zinc-950 md:px-14'>
     <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-      <div class='p-px overflow-hidden rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
+      <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
         <div class='flex flex-col border-gray-700 text-slate-100'>
           <!-- topics lists -->
           <div class="flex-col items-center justify-center w-full">
-            <div class='px-10 py-6 border-gray-700' >
+            <div class='px-4 py-6 border-gray-700 md:px-10' >
               <h1 class='text-2xl'>Topics</h1>
             </div>
             <% topics.each_with_index do |topic, index| %>
-              <div class='flex flex-col px-10 py-4 space-y-2 border-t border-gray-700'>
-                <h1 class='text-sm'>
-                  <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug) %>
+              <div class='flex flex-col px-4 py-4 space-y-2 border-t border-gray-700 md:px-10'>
+                <h1 class='text-md md:text-sm'>
+                  <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
                 </h1>
                 <h5 class='text-xs'>by <%= topic.user.username %>
                   <% if topic.created_at > 24.hours.ago %>
@@ -40,13 +40,14 @@
     </div>
   </div>
 </div>
-<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+<div class='hidden w-full border-b md:flex bg-zinc-950 border-b-gray-700 px-14'>
   <div class='flex flex-row justify-end w-full h-10 px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
   </div>
 </div>
+<!-- add a comment box -->
 <% if current_user %>
   <%= form_with scope: :topic, url: new_sub_forum_topic_path, local: true do |form| %>
-    <div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+    <div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
       <div class='flex flex-row w-full h-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
         <div class='flex flex-col w-full p-4 space-y-4 md:flex-row md:space-x-8 md:space-y-0'>
           <div class='flex flex-col w-full space-y-4'>
