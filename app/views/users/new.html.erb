@@ -1,0 +1,35 @@
+<%= render 'forums/banner' %>
+<div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+  <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l py-2 px-4 text-slate-100 h-full'>
+    <div id='error_message' class='flex flex-row'>
+      create your account
+    </div>
+  </div>
+</div>
+<%= form_with scope: :user, url: user_create_path, local: true do |form| %>
+  <div class='flex w-full border-b bg-zinc-950 border-b-gray-700 px-14'>
+    <div class='flex flex-row w-full space-x-4 border-gray-700 border-r border-l py-2 px-4 text-slate-100 h-full'>
+      <div class='flex flex-col w-full p-4 space-y-4 md:flex-row md:space-x-8 md:space-y-0'>
+        <div class='flex flex-col w-full space-y-4'>
+          <%= form.text_field :username,
+            class: 'form-input w-full h-16 text-slate-50 text-xl bg-zinc-950 border-gray-700 focus:border-slate-500 focus:ring-1 focus:ring-slate-500',
+            placeholder: 'username'
+          %>
+          <%= form.email_field :email,
+            class: 'form-input w-full h-16 text-slate-50 text-xl bg-zinc-950 border-gray-700 focus:border-slate-500 focus:ring-1 focus:ring-slate-500',
+            placeholder: 'email'
+          %>
+          <%= form.password_field :password,
+            class: 'form-input w-full h-16 text-slate-50 text-xl bg-zinc-950 border-gray-700 focus:border-slate-500 focus:ring-1 focus:ring-slate-500',
+            placeholder: 'password'
+          %>
+        </div>
+        <div class='basis-1/4 justify-center items-center flex'>
+          <%= form.submit "Sign up",
+            class: "bg-none border border-sky-500 hover:border-sky-700 hover:text-sky-700 text-sky-500 font-bold py-2 px-4 rounded-full cursor-pointer w-full h-16 md:h-24"
+          %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

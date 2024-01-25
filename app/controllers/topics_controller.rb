@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    topic = Topic.find_by(slug: params[:slug])
+    topic = Topic.find_by(slug: params[:topic_slug])
     comments = Comment.where(topic:)
 
     render :show, locals: { topic:, comments: }
