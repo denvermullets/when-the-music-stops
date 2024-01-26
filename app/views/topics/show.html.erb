@@ -1,46 +1,51 @@
 <%= render 'forums/banner' %>
 <!-- topic box -->
-<div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
-  <div class='flex flex-row justify-end w-full px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
-    Page 1 of 10
+<div class='sticky z-10 flex w-full px-2 border-b top-10 bg-zinc-950 border-b-gray-700 md:px-14'>
+  <div class='flex flex-row items-center justify-between w-full px-4 py-2 mx-auto space-x-4 lowercase border-l border-r border-gray-700 center text-slate-100'>
+    <div>
+      <%= link_to "<- #{topic.sub_forum.name}", forum_sub_forum_path(topic.sub_forum.forum, topic.sub_forum), class: 'hover:text-sky-500' %>
+    </div>
+    <%== pagy_nav(@pagy, link_extra: 'class="hover:text-sky-500 "') %>
   </div>
 </div>
 <!-- comments index view -->
 <div class='flex flex-col w-full border-b border-gray-700'>
   <div class='px-2 bg-zinc-950 md:px-14'>
-    <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-      <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
-        <div class='flex flex-col border-gray-700 text-slate-100'>
-          <!-- topic post -->
-          <div class="flex flex-row w-full">
-            <div class='flex-col hidden w-64 px-10 py-6 border-r border-gray-700 md:flex ' >
-              <div class='w-20 h-20 bg-gray-300 '>image</div>
-              <h5 class='mt-2 text-md'><%= topic.user.username %></h5>
-              <h5 class='text-xs'>Title</h5>
-              <h5 class='text-xs'>Posts: 2,305</h5>
-              <h5 class='text-xs'>Joined: <%= topic.user.created_at.strftime("%b %d, %Y") %></h5>
-              <h5 class='text-xs'>Location: nowhereville</h5>
-            </div>
-            <div class='flex-col w-full border-gray-700'>
-              <div class='px-4 py-2 border-gray-700 md:border-b'>
-                <h1 class='text-2xl'><%= topic.title %></h1>
-                <h5 class='text-xs'>
-                  by <%= topic.user.username %>
-                  <% if topic.created_at > 24.hours.ago %>
-                    <%= time_ago_in_words(topic.created_at) + " ago" %>
-                  <% else %>
-                    on <%= topic.created_at.strftime("%b %d, %Y") %>
-                  <% end %>
-                </h5>
+    <% if params[:page].nil? || params[:page] == '1'  %>
+      <div class='border-l border-r border-gray-700 bg-zinc-950 '>
+        <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
+          <div class='flex flex-col border-gray-700 text-slate-100'>
+            <!-- topic post -->
+            <div class="flex flex-row w-full">
+              <div class='flex-col hidden w-64 px-10 py-6 border-r border-gray-700 md:flex ' >
+                <div class='w-20 h-20 bg-gray-300 '>image</div>
+                <h5 class='mt-2 text-md'><%= topic.user.username %></h5>
+                <h5 class='text-xs'>Title</h5>
+                <h5 class='text-xs'>Posts: 2,305</h5>
+                <h5 class='text-xs'>Joined: <%= topic.user.created_at.strftime("%b %d, %Y") %></h5>
+                <h5 class='text-xs'>Location: nowhereville</h5>
               </div>
-              <div class='p-4'>
-                <%= topic.body %>
+              <div class='flex-col w-full border-gray-700'>
+                <div class='px-4 py-2 border-gray-700 md:border-b'>
+                  <h1 class='text-2xl'><%= topic.title %></h1>
+                  <h5 class='text-xs'>
+                    by <%= topic.user.username %>
+                    <% if topic.created_at > 24.hours.ago %>
+                      <%= time_ago_in_words(topic.created_at) + " ago" %>
+                    <% else %>
+                      on <%= topic.created_at.strftime("%b %d, %Y") %>
+                    <% end %>
+                  </h5>
+                </div>
+                <div class='p-4'>
+                  <%= topic.body %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
     <!-- comment post -->
     <% comments.map do |comment| %>
       <div class='border-l border-r border-gray-700 bg-zinc-950 '>
@@ -79,7 +84,8 @@
   </div>
 </div>
 <div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
-  <div class='flex flex-row justify-end w-full h-10 px-4 py-2 space-x-4 border-l border-r border-gray-700 text-slate-100'>
+  <div class='flex flex-row justify-end w-full h-10 px-4 py-2 space-x-4 lowercase border-l border-r border-gray-700 text-slate-100'>
+    <%== pagy_nav(@pagy, link_extra: 'class="hover:text-sky-500 "')%>
   </div>
 </div>
 <!-- -->
