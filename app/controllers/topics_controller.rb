@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  include Pagy::Backend
+
   def create
     topic = Topic.new(topic_params)
 
@@ -19,7 +21,7 @@ class TopicsController < ApplicationController
 
   def show
     topic = Topic.find_by(slug: params[:topic_slug])
-    comments = Comment.where(topic:)
+    @pagy, comments = pagy(Comment.where(topic:))
 
     render :show, locals: { topic:, comments: }
   end
