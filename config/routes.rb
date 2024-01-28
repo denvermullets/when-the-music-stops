@@ -34,4 +34,6 @@ Rails.application.routes.draw do
 
   get 'sign-up', to: 'users#new', as: :user_sign_up
   post 'sign-up', to: 'users#create', as: :user_create
+  get '/users/profile/:username', to: 'users#show', as: :user_show
+  patch '/users/profile/edit/:username', to: 'users#update', as: :user_update
 end

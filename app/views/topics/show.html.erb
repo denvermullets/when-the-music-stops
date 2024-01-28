@@ -18,23 +18,25 @@
             <!-- topic post -->
             <div class="flex flex-row w-full">
               <div class='flex-col hidden w-64 px-10 py-6 border-r border-gray-700 md:flex ' >
-                <div class='w-20 h-20 bg-gray-300 '>image</div>
+                <% if topic.user.avatar.attached? %>
+                  <div class='hidden w-20 h-20 md:block '>
+                    <%= image_tag topic.user.avatar %>
+                  </div>
+                <% end %>
                 <h5 class='mt-2 text-md'><%= topic.user.username %></h5>
-                <h5 class='text-xs'>Title</h5>
-                <h5 class='text-xs'>Posts: 2,305</h5>
-                <h5 class='text-xs'>Joined: <%= topic.user.created_at.strftime("%b %d, %Y") %></h5>
-                <h5 class='text-xs'>Location: nowhereville</h5>
+                <% if topic.user.display_post_count? %>
+                  <h5 class='text-xs'>Posts: <%= topic.user.post_count %></h5>
+                <% end %>
+                <h5 class='text-xs'>Joined: <%= format_created_date(topic.user) %></h5>
+                <% if topic.user.location.present? && topic.user.display_location? %>
+                  <h5 class='text-xs'>Location: <%= topic.user.location %></h5>
+                <% end %>
               </div>
               <div class='flex-col w-full border-gray-700'>
                 <div class='px-4 py-2 border-gray-700 md:border-b'>
                   <h1 class='text-2xl'><%= topic.title %></h1>
                   <h5 class='text-xs'>
-                    by <%= topic.user.username %>
-                    <% if topic.created_at > 24.hours.ago %>
-                      <%= time_ago_in_words(topic.created_at) + " ago" %>
-                    <% else %>
-                      on <%= topic.created_at.strftime("%b %d, %Y") %>
-                    <% end %>
+                    by <%= topic.user.username %><%= format_created_date(topic) %>
                   </h5>
                 </div>
                 <div class='p-4'>
@@ -53,23 +55,25 @@
           <div class='flex flex-col border-gray-700 text-slate-100'>
             <div class="flex flex-row w-full">
               <div class='flex-col hidden w-64 px-2 py-6 border-r border-gray-700 md:flex md:px-10 ' >
-                <div class='hidden w-20 h-20 bg-gray-300 md:block '>image</div>
+                <% if comment.user.avatar.attached? %>
+                  <div class='hidden w-20 h-20 md:block '>
+                    <%= image_tag comment.user.avatar %>
+                  </div>
+                <% end %>
                 <h5 class='mt-2 text-md'><%= comment.user.username %></h5>
-                <h5 class='text-xs'>Title</h5>
-                <h5 class='text-xs'>Posts: 2,305</h5>
-                <h5 class='text-xs'>Joined: <%= comment.user.created_at.strftime("%b %d, %Y") %></h5>
-                <h5 class='text-xs'>Location: nowhereville</h5>
+                <% if comment.user.display_post_count? %>
+                  <h5 class='text-xs'>Posts: <%= comment.user.post_count %></h5>
+                <% end %>
+                <h5 class='text-xs'>Joined: <%= format_created_date(comment.user) %></h5>
+                <% if comment.user.location.present? && comment.user.display_location? %>
+                  <h5 class='text-xs'>Location: <%= comment.user.location %></h5>
+                <% end %>
               </div>
               <div class='flex-col w-full border-gray-700'>
                 <div class='px-4 py-2 border-gray-700 md:border-b'>
                   <h1 class='text-lg'>re: <%= topic.title %></h1>
                   <h5 class='text-xs'>
-                    by <%= comment.user.username %>
-                    <% if comment.created_at > 24.hours.ago %>
-                      <%= time_ago_in_words(comment.created_at) + " ago" %>
-                    <% else %>
-                      on <%= comment.created_at.strftime("%b %d, %Y") %>
-                    <% end %>
+                    by <%= comment.user.username %> <%= format_created_date(comment) %>
                   </h5>
                 </div>
                 <div class='p-4'>

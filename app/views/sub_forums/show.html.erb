@@ -2,7 +2,7 @@
 <!-- forum index box -->
 <div class='sticky z-10 flex w-full px-2 border-b top-10 bg-zinc-950 border-b-gray-700 md:px-14'>
   <div class='flex flex-row items-center justify-between w-full px-4 py-2 mx-auto space-x-4 lowercase border-l border-r border-gray-700 center text-slate-100'>
-    <%= link_to "<- Home", forums_path, class: 'hover:text-sky-500 lowercase' %>
+    <%= link_to "<- home", forums_path, class: 'hover:text-sky-500 lowercase' %>
     <%= sub_forum.name.downcase %>
   </div>
 </div>
@@ -22,12 +22,7 @@
                 <h1 class='text-md md:text-sm'>
                   <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
                 </h1>
-                <h5 class='text-xs'>by <%= topic.user.username %>
-                  <% if topic.created_at > 24.hours.ago %>
-                    <%= time_ago_in_words(topic.created_at) + " ago" %>
-                  <% else %>
-                    on <%= topic.created_at.strftime("%b %d, %Y") %>
-                  <% end %>
+                <h5 class='text-xs'>by <%= topic.user.username %> <%= format_created_date(topic) %>
                 </h5>
               </div>
               <% if index === topics.length - 1%>
