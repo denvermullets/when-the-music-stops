@@ -23,7 +23,7 @@
                     <%= image_tag topic.user.avatar %>
                   </div>
                 <% end %>
-                <h5 class='mt-2 text-md'><%= topic.user.username %></h5>
+                <h5 class='mt-2 text-md'><%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %></h5>
                 <% if topic.user.display_post_count? %>
                   <h5 class='text-xs'>Posts: <%= topic.user.post_count %></h5>
                 <% end %>
@@ -60,7 +60,7 @@
                     <%= image_tag comment.user.avatar %>
                   </div>
                 <% end %>
-                <h5 class='mt-2 text-md'><%= comment.user.username %></h5>
+                <h5 class='mt-2 text-md'><%= link_to comment.user.username, user_show_path(comment.user.username), class: 'hover:text-sky-500' %></h5>
                 <% if comment.user.display_post_count? %>
                   <h5 class='text-xs'>Posts: <%= comment.user.post_count %></h5>
                 <% end %>

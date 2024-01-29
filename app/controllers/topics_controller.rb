@@ -5,6 +5,9 @@ class TopicsController < ApplicationController
     topic = Topic.new(topic_params)
 
     if topic.save
+      post_count = topic.user.post_count + 1
+      topic.user.update(post_count:)
+
       redirect_to forum_sub_forum_topic_path(
         forum_slug: topic.sub_forum.forum.slug, sub_forum_slug: topic.sub_forum.slug, topic_slug: topic.slug
       )

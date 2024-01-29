@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  # def new
-  #   @user = User.new
-  # end
-
   def create
     user = User.new(user_params)
 
@@ -17,10 +13,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete_avatar
+    user = User.find_by('username ILIKE ?', params[:username])
+    user&.avatar&.purge_later
+
+    if user
+      redirect_to user_show_path(user.username)
+    else
+      redirect_to root_path
+    end
+  end
+
   def update
     user = User.find(params[:user_id])
     if user.update(user_params)
       redirect_to user_show_path, locals: { user: }
+    else
+      respond_to do |format|
+        format.html { render :show }
+        format.turbo_stream
+      end
     end
   end
 

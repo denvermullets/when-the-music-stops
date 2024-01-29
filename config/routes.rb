@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   post 'sign-up', to: 'users#create', as: :user_create
   get '/users/profile/:username', to: 'users#show', as: :user_show
   patch '/users/profile/edit/:username', to: 'users#update', as: :user_update
+  delete '/users/profile/edit/:username/avatar', to: 'users#delete_avatar', as: :user_delete_avatar
 end
