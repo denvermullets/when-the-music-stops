@@ -15,14 +15,20 @@
           <!-- topics lists -->
           <div class="flex-col items-center justify-center w-full">
             <div class='px-4 py-6 border-gray-700 md:px-10' >
-              <h1 class='text-2xl'>Topics</h1>
+              <h1 class='text-2xl'>topics</h1>
             </div>
             <% topics.each_with_index do |topic, index| %>
               <div class='flex flex-col px-4 py-4 space-y-2 border-t border-gray-700 md:px-10'>
                 <h1 class='text-md md:text-sm'>
                   <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
                 </h1>
-                <h5 class='text-xs'>by <%= topic.user.username %> <%= format_created_date(topic) %>
+                <h5 class='text-xs'>by
+                  <% if topic.comments.empty? %>
+                    <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
+                  <% else %>
+                    <%= link_to topic.comments.last.user.username, user_show_path(topic.comments.last.user.username), class: 'hover:text-sky-500' %>
+                  <% end %>
+                  <%= topic.comments.empty? ? format_created_date(topic) : format_created_date(topic.comments.last) %>
                 </h5>
               </div>
               <% if index === topics.length - 1%>
