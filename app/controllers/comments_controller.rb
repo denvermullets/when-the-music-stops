@@ -3,6 +3,9 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
 
     if comment.save
+      post_count = comment.user.post_count + 1
+      comment.user.update(post_count:)
+
       redirect_to forum_sub_forum_topic_path(slug: comment.topic.slug)
     else
       topic = Topic.find_by(slug: params[:topic_slug])

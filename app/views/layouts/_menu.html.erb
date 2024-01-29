@@ -5,7 +5,7 @@
     </div>
     <div class='flex flex-row space-x-4 '>
       <% if current_user %>
-        <div><%= current_user.username %></div>
+        <div><%= link_to current_user.username, user_show_path(username: current_user.username), class: 'hover:text-sky-500' %></div>
         <div>
           <%= button_to 'logout', logout_path, method: :delete, form: { "data-turbo": "false" }, class: 'hover:text-sky-500'%>
         </div>
