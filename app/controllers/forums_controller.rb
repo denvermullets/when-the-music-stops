@@ -5,7 +5,7 @@ class ForumsController < ApplicationController
     last_topic = Topic.last
 
     # this will only be nil if it's a fresh wtms instance
-    last_post = if last_topic.nil?
+    last_post = if last_topic.nil? || last_comment.nil?
                   nil
                 else
                   last_comment.created_at > last_topic.created_at ? last_comment : last_topic
