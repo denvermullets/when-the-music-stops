@@ -25,7 +25,7 @@
                     <%= image_tag user.avatar if user.avatar.attached? %>
                   </div>
                   <div class='mt-2 text-xs'>80x80 px</div>
-                  <% if user.avatar.attached? %>
+                  <% if user.avatar.attached? && user.id == current_user.id %>
                     <%= link_to 'remove avatar', user_delete_avatar_path(user.username), data: { turbo_method: :delete }, class: 'text-xs' %>
                   <% end %>
                 </div>
