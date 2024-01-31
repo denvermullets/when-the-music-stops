@@ -41,7 +41,7 @@
                   </h5>
                 </div>
                 <div class='p-4'>
-                  <%= topic.body %>
+                  <%= simple_format(topic.body) %>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
                   </h5>
                 </div>
                 <div class='p-4'>
-                  <%= comment.body %>
+                  <%= simple_format(comment.body) %>
                 </div>
               </div>
             </div>
