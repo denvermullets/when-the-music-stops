@@ -8,4 +8,8 @@ module ApplicationHelper
       "on #{obj.created_at.strftime('%b %d, %Y')}"
     end
   end
+
+  def line_break(text)
+    html_escape(text).gsub(/\n/, '<br>').html_safe
+  end
 end
