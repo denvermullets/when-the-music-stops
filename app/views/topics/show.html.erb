@@ -36,7 +36,7 @@
                 <div class='px-4 py-2 border-gray-700 md:border-b'>
                   <h1 class='text-2xl'><%= topic.title %></h1>
                   <h5 class='text-xs'>
-                    by <%= topic.user.username %>
+                    by <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
                     <%= format_created_date(topic) %>
                   </h5>
                 </div>

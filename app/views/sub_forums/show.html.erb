@@ -19,7 +19,7 @@
             </div>
             <% topics.each_with_index do |topic, index| %>
               <div class='flex flex-col px-4 py-4 space-y-2 border-t border-gray-700 md:px-10'>
-                <h1 class='text-md md:text-sm'>
+                <h1 class='<%= topic.read?(current_user) ? 'text-white' : 'text-sky-400 font-semibold' %> text-md md:text-sm'>
                   <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
                 </h1>
                 <h5 class='text-xs'>by

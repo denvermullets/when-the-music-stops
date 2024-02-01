@@ -27,6 +27,15 @@ class TopicsController < ApplicationController
     topic = Topic.find_by(slug: params[:topic_slug])
     @pagy, comments = pagy(Comment.where(topic:))
 
+    if current_user
+      receipt = UserTopicReceipt.find_by(topic:, user: current_user)
+      if receipt
+        receipt.update_last_read
+      else
+        UserTopicReceipt.create(topic:, user: current_user, last_read: Time.current)
+      end
+    end
+
     render :show, locals: { topic:, comments: }
   end
 
