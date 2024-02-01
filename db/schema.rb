@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_29_190633) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_01_122515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_190633) do
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
+  create_table "user_topic_receipts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "last_read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_user_topic_receipts_on_topic_id"
+    t.index ["user_id"], name: "index_user_topic_receipts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "password_digest"
     t.string "email"
@@ -110,4 +120,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_190633) do
   add_foreign_key "topics", "forums"
   add_foreign_key "topics", "sub_forums"
   add_foreign_key "topics", "users"
+  add_foreign_key "user_topic_receipts", "topics"
+  add_foreign_key "user_topic_receipts", "users"
 end
