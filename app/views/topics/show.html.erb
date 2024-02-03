@@ -41,7 +41,7 @@
                   </h5>
                 </div>
                 <div class='p-4'>
-                  <%= line_break(topic.body) %>
+                  <%= embed_links(line_break(topic.body)).html_safe %>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
                   </h5>
                 </div>
                 <div class='p-4'>
-                  <%= line_break(comment.body) %>
+                  <%= embed_links(line_break(comment.body)).html_safe %>
                 </div>
               </div>
             </div>
