@@ -27,7 +27,7 @@
                 <div class='p-4 -mt-1 border-gray-700 md:border-r md:border-l md:p-4 md:py-8' >
                   <h1 class='text-2xl'><%= forum.name %></h1>
                 </div>
-                <% forum.sub_forums.each do |sub_forum| %>
+                <% forum.sub_forums.order(forum_order: :asc).each do |sub_forum| %>
                   <div class='p-4 border-t border-gray-700 md:border-l md:border-r '>
                     <h1 class='text-md'>
                       <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum), class: 'hover:text-sky-500' %>
