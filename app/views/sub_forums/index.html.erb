@@ -19,7 +19,7 @@
             <% topics.each_with_index do |topic, index| %>
               <div class='flex flex-col px-10 py-4 space-y-2 border-t border-gray-700'>
                 <h1 class='text-sm'>
-                  <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug) %>
+                  <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug) %>
                 </h1>
                 <h5 class='text-xs'>by <%= topic.user.username %>
                   <% if topic.created_at > 24.hours.ago %>
