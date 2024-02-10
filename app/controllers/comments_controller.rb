@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       comment.user.update(post_count:)
       comment.topic.update(recent_activity: Time.current)
 
-      redirect_to forum_sub_forum_topic_path(slug: comment.topic.slug)
+      redirect_to forum_sub_forum_topic_path
     else
       topic = Topic.find_by(slug: params[:topic_slug])
       comments = Comment.where(topic:)
