@@ -18,18 +18,31 @@
               <h1 class='text-2xl'>topics</h1>
             </div>
             <% topics.each_with_index do |topic, index| %>
-              <div class='flex flex-col px-4 py-4 space-y-2 border-t border-gray-700 md:px-10'>
-                <h1 class='<%= topic.read?(current_user) ? 'text-white' : 'text-sky-400 font-semibold' %> text-md md:text-sm'>
-                  <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
-                </h1>
-                <h5 class='text-xs'>by
-                  <% if topic.comments.empty? %>
-                    <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
-                  <% else %>
-                    <%= link_to topic.comments.last.user.username, user_show_path(topic.comments.last.user.username), class: 'hover:text-sky-500' %>
+              <div class='flex w-full px-4 py-4 space-y-2 border-t border-gray-700 md:px-10 '>
+                <div class='flex flex-row items-center justify-between w-full mx-auto '>
+                  <div class='flex flex-col'>
+                    <h1 class='<%= topic.read?(current_user) ? 'text-white' : 'text-sky-400 font-semibold' %> text-md md:text-sm'>
+                      <%= link_to topic.title, forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
+                    </h1>
+                    <h5 class='text-xs'>by
+                      <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
+                      <%= format_created_date(topic) %>
+                    </h5>
+                  </div>
+                  <% if !topic.comments.empty?  %>
+                    <div class='flex flex-col '>
+                      <div class='text-sm'>
+                        <%= link_to topic.comments.count == 1 ? "#{topic.comments.count} comment" : "#{topic.comments.count} comments",
+                        forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
+                      </div>
+                      <div>
+                        <h5 class='text-xs'>latest by
+                          <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
+                        </h5>
+                      </div>
+                    </div>
                   <% end %>
-                  <%= topic.comments.empty? ? format_created_date(topic) : format_created_date(topic.comments.last) %>
-                </h5>
+                </div>
               </div>
               <% if index === topics.length - 1%>
                 <div class='p-4 border-t border-gray-700 '>
