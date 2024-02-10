@@ -8,88 +8,19 @@
     <%== pagy_nav(@pagy, link_extra: 'class="hover:text-sky-500 "') %>
   </div>
 </div>
-<!-- comments index view -->
 <div class='flex flex-col w-full border-b border-gray-700'>
   <div class='px-2 bg-zinc-950 md:px-14'>
-    <% if params[:page].nil? || params[:page] == '1'  %>
-      <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-        <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
-          <div class='flex flex-col border-gray-700 text-slate-100'>
-            <!-- topic post -->
-            <div class="flex flex-row w-full">
-              <div class='flex-col hidden w-64 px-10 py-6 border-r border-gray-700 md:flex ' >
-                <% if topic.user.avatar.attached? %>
-                  <div class='hidden w-20 h-20 md:block '>
-                    <%= image_tag topic.user.avatar %>
-                  </div>
-                <% end %>
-                <h5 class='mt-2 text-md'><%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %></h5>
-                <% if topic.user.display_post_count? %>
-                  <h5 class='text-xs'>Posts: <%= topic.user.post_count %></h5>
-                <% end %>
-                <h5 class='text-xs'>Joined: <%= format_created_date(topic.user) %></h5>
-                <% if topic.user.location.present? && topic.user.display_location? %>
-                  <h5 class='text-xs'>Location: <%= topic.user.location %></h5>
-                <% end %>
-              </div>
-              <div class='flex-col w-full border-gray-700'>
-                <div class='px-4 py-2 border-gray-700 md:border-b'>
-                  <h1 class='text-2xl'><%= topic.title %></h1>
-                  <h5 class='text-xs'>
-                    by <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
-                    <%= format_created_date(topic) %>
-                  </h5>
-                </div>
-                <div class='p-4'>
-                  <%= embed_links(line_break(topic.body)).html_safe %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <% if params[:page].nil? || params[:page] == '1' %>
+      <%= render partial: 'shared/post', locals: { message: topic, topic: }%>
     <% end %>
-    <!-- comment post -->
     <% comments.map do |comment| %>
-      <div class='border-l border-r border-gray-700 bg-zinc-950 '>
-        <div class='p-px overflow-hidden md:rounded-full bg-gradientTopRight ring-1 ring-gray-700'>
-          <div class='flex flex-col border-gray-700 text-slate-100'>
-            <div class="flex flex-row w-full">
-              <div class='flex-col hidden w-64 px-2 py-6 border-r border-gray-700 md:flex md:px-10 ' >
-                <% if comment.user.avatar.attached? %>
-                  <div class='hidden w-20 h-20 md:block '>
-                    <%= image_tag comment.user.avatar %>
-                  </div>
-                <% end %>
-                <h5 class='mt-2 text-md'><%= link_to comment.user.username, user_show_path(comment.user.username), class: 'hover:text-sky-500' %></h5>
-                <% if comment.user.display_post_count? %>
-                  <h5 class='text-xs'>Posts: <%= comment.user.post_count %></h5>
-                <% end %>
-                <h5 class='text-xs'>Joined: <%= format_created_date(comment.user) %></h5>
-                <% if comment.user.location.present? && comment.user.display_location? %>
-                  <h5 class='text-xs'>Location: <%= comment.user.location %></h5>
-                <% end %>
-              </div>
-              <div class='flex-col w-full border-gray-700'>
-                <div class='px-4 py-2 border-gray-700 md:border-b'>
-                  <h1 class='text-lg'>re: <%= topic.title %></h1>
-                  <h5 class='text-xs'>
-                    by <%= comment.user.username %> <%= format_created_date(comment) %>
-                  </h5>
-                </div>
-                <div class='p-4'>
-                  <%= embed_links(line_break(comment.body)).html_safe %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'shared/post', locals: { message: comment, topic: } %>
     <% end %>
   </div>
 </div>
 <div class='flex w-full px-2 border-b bg-zinc-950 border-b-gray-700 md:px-14'>
-  <div class='flex flex-row justify-end w-full h-10 px-4 py-2 space-x-4 lowercase border-l border-r border-gray-700 text-slate-100'>
+  <div class='flex flex-row items-center justify-between w-full h-10 px-4 py-2 mx-auto space-x-4 lowercase border-l border-r border-gray-700 text-slate-100'>
+    <h1>leave a comment</h1>
     <%== pagy_nav(@pagy, link_extra: 'class="hover:text-sky-500 "')%>
   </div>
 </div>
