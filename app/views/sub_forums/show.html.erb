@@ -30,14 +30,14 @@
                     </h5>
                   </div>
                   <% if !topic.comments.empty?  %>
-                    <div class='flex flex-col '>
+                    <div class='flex flex-col items-end '>
                       <div class='text-sm'>
                         <%= link_to topic.comments.count == 1 ? "#{topic.comments.count} comment" : "#{topic.comments.count} comments",
                         forum_sub_forum_topic_path(forum_slug: sub_forum.forum.slug, sub_forum_slug: sub_forum.slug, topic_slug: topic.slug), class: 'hover:text-sky-500' %>
                       </div>
                       <div>
                         <h5 class='text-xs'>latest by
-                          <%= link_to topic.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
+                          <%= link_to topic.comments.last.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
                         </h5>
                       </div>
                     </div>
