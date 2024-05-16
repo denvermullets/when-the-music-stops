@@ -29,6 +29,7 @@ class TopicsController < ApplicationController
 
     if current_user
       receipt = UserTopicReceipt.find_by(topic:, user: current_user)
+
       if receipt
         receipt.update_last_read
       else
