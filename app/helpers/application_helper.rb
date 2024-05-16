@@ -68,25 +68,7 @@ module ApplicationHelper
     text.gsub(ballot_box_regex) do |match|
       ballot_id = match.scan(ballot_box_regex).flatten.first
       <<-HTML
-      <div id="ballot-box-root-#{ballot_id}" data-ballot-id="#{ballot_id}" class='text-gray-500'></div>
-      <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-      <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-      <script src="https://ballotboxballot.s3.amazonaws.com/ballot-box-ballot.umd.cjs" onerror="console.error('Failed to load ballot-box script');"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          var rootElement = document.getElementById("ballot-box-root-#{ballot_id}");
-          var props = {
-            host: "https://api.voteballotbox.com/api/v1",
-            ballotId: #{ballot_id},
-          };
-
-          if (window.BallotBoxBallot && typeof window.BallotBoxBallot.mount === "function") {
-            window.BallotBoxBallot.mount(rootElement, props);
-          } else {
-            console.error("BallotBoxBallot or BallotBoxBallot.mount is not defined");
-          }
-        });
-      </script>
+        <div id="ballot-box-root-#{ballot_id}" data-ballot-id="#{ballot_id}" class='text-gray-500'></div>
       HTML
     end
   end
