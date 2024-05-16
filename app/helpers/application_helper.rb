@@ -14,11 +14,10 @@ module ApplicationHelper
   end
 
   def embed_links(text)
+    text = embed_url_image(text)
     text = embed_spotify(text)
     text = embed_youtube(text)
     text = embed_bandcamp(text)
-    text = embed_image(text)
-    text = embed_url(text)
 
     embed_ballot_box(text)
   end
@@ -58,10 +57,16 @@ module ApplicationHelper
     end
   end
 
-  def embed_url(text)
+  def embed_url_image(text)
     url_regex = %r{(?<!src=")(https?://[^\s<]+)}
+    image_regex = /\.(png|jpg|jpeg|gif)$/
+
     text.gsub(url_regex) do |match|
-      "<a href=\"#{match}\" class='text-sky-500' target='_blank' rel='noopener noreferrer'>#{match}</a>"
+      if match =~ image_regex
+        "<img src=\"#{match}\" style=\"max-width: 500px; max-height: 500px;\" />"
+      else
+        "<a href=\"#{match}\" class='text-sky-500' target='_blank' rel='noopener noreferrer'>#{match}</a>"
+      end
     end
   end
 
