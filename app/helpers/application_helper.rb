@@ -49,14 +49,6 @@ module ApplicationHelper
     end
   end
 
-  def embed_image(text)
-    image_regex = %r{(https?://.*?\.(?:png|jpg|jpeg|gif))}
-
-    text.gsub(image_regex) do |match|
-      "<img src=\"#{match}\" style=\"max-width: 500px; max-height: 500px;\" />"
-    end
-  end
-
   def embed_url_image(text)
     url_regex = %r{(?<!src=")(https?://[^\s<]+)}
     image_regex = /\.(png|jpg|jpeg|gif)$/
