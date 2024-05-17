@@ -14,12 +14,13 @@ module ApplicationHelper
   end
 
   def embed_links(text)
-    text = embed_url_image(text)
+    # url embeds last to avoid breaking other embeds
     text = embed_spotify(text)
     text = embed_youtube(text)
     text = embed_bandcamp(text)
+    text = embed_ballot_box(text)
 
-    embed_ballot_box(text)
+    embed_url_image(text)
   end
 
   def embed_spotify(text)
@@ -43,6 +44,7 @@ module ApplicationHelper
 
   def embed_bandcamp(text)
     bandcamp_regex = /\[bandcamp=(\d+)\]/
+
     text.gsub(bandcamp_regex) do |match|
       album_id = match.scan(bandcamp_regex).flatten.first
       "<iframe style=\"border: 0; width: 100%; height: 472px;\" src=\"https://bandcamp.com/EmbeddedPlayer/album=#{album_id}/size=large/bgcol=333333/linkcol=4ec5ec/artwork=small/transparent=true/\" seamless></iframe>"
@@ -68,7 +70,9 @@ module ApplicationHelper
     text.gsub(ballot_box_regex) do |match|
       ballot_id = match.scan(ballot_box_regex).flatten.first
       <<-HTML
-        <div id="ballot-box-root-#{ballot_id}" data-ballot-id="#{ballot_id}" class='text-gray-500'></div>
+        <div id="ballot-box-wrapper-#{ballot_id}" class="ballot-box-wrapper">
+          <div id="ballot-box-root-#{ballot_id}" data-ballot-id="#{ballot_id}" class="text-gray-500"></div>
+        </div>
       HTML
     end
   end

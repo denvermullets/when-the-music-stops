@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 
 // this is so that after turbo does its thing we can load our javascript
-document.addEventListener("turbo:load", function () {
+document.addEventListener(function () {
   // console.log("Turbo loaded");
   var ballotElements = document.querySelectorAll("[id^='ballot-box-root-']");
   ballotElements.forEach(function (rootElement) {
