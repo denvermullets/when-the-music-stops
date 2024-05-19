@@ -3,9 +3,9 @@
   <head>
     <title>WhenTheMusicStops</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <!-- include React and ReactDOM globally, sucks to load it this way but want to see if it's more stable -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
