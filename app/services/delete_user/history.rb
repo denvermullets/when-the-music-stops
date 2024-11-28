@@ -1,4 +1,4 @@
-# delets a user, all their comments, their topics, and any other users comments on that topic
+# deletes a user, all their comments, their topics, and any other users comments on that topic
 
 module DeleteUser
   class History < Service
