@@ -1,4 +1,4 @@
-# asdf
+# delets a user, all their comments, their topics, and any other users comments on that topic
 
 module DeleteUser
   class History < Service
@@ -25,7 +25,10 @@ module DeleteUser
 
     def delete_topic
       topics = Topic.where(user_id: @user.id)
-      topics.each { |topic| topic.comments.count.positive? ? delete_other_comments(topic) : topic.delete }
+      topics.each do |topic|
+        UserTopicReceipt.where(topic_id: topic.id).each(&:delete)
+        topic.comments.count.positive? ? delete_other_comments(topic) : topic.delete
+      end
     end
 
     def delete_other_comments(topic)
