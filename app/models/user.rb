@@ -5,4 +5,8 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: { case_sensitive: false }
   validates :username, uniqueness: { case_sensitive: false }
+
+  def admin?
+    role == 9001
+  end
 end
