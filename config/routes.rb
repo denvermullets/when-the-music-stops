@@ -8,6 +8,15 @@ Rails.application.routes.draw do
   # Defines the root path route ('/')
   root 'forums#index'
 
+  namespace :admin do
+    constraints ->(req) {
+      current_user = User.find_by(id: req.session[:user_id])
+      current_user&.admin?
+    } do
+      post 'delete_user/:user_id', to: 'actions#delete_user', as: :delete_user
+    end
+  end
+
   # /forums/forum-slug/sub-forum-slug/topic-slug
   # eg: /forums/music/ambient-experimental/sigur-ros
   # overwriting the path to achieve this structure of url

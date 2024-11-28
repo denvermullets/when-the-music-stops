@@ -19,7 +19,12 @@
         </div>
         <div class='flex-col w-full border-gray-700'>
           <div class='px-4 py-2 border-gray-700 md:border-b'>
-            <h1 class='text-lg'>re: <%= topic.title %></h1>
+            <div class='flex flex-row items-center justify-between w-full'>
+              <h1 class='text-lg'>re: <%= topic.title %></h1>
+              <% if current_user.admin? && message.user.id != current_user.id %>
+                <%= button_to 'delete', admin_delete_user_path(message.user.id), method: :post, class: 'hover:text-sky-500', data: { confirm: 'are you sure? this will delete user / comments / topics' } %>
+              <% end %>
+            </div>
             <h5 class='text-xs'>
               by <%= message.user.username %> <%= format_created_date(message) %>
             </h5>
