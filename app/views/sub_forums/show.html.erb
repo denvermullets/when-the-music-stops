@@ -37,7 +37,7 @@
                       </div>
                       <div>
                         <h5 class='text-xs'>latest by
-                          <%= link_to topic.comments.last.user.username, user_show_path(topic.user.username), class: 'hover:text-sky-500' %>
+                          <%= link_to topic.comments.last.user.username, user_show_path(topic.comments.last.user.username), class: 'hover:text-sky-500' %>
                         </h5>
                       </div>
                     </div>
