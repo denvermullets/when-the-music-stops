@@ -25,7 +25,7 @@ module DeleteUser
 
     def delete_topic
       topics = Topic.where(user_id: @user.id)
-      topics.each { |topic| topic.comments.positive? ? delete_other_comments(topic) : topic.delete }
+      topics.each { |topic| topic.comments.count.positive? ? delete_other_comments(topic) : topic.delete }
     end
 
     def delete_other_comments(topic)
