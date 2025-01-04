@@ -23,6 +23,7 @@ module ApplicationHelper
     embed_url_image(text)
   end
 
+  # rubocop:disable Layout/LineLength
   def embed_spotify(text)
     spotify_url_regex = %r{https://open.spotify.com/(album|track|playlist)/([a-zA-Z0-9]+)(\?.*)?}
 
@@ -76,4 +77,5 @@ module ApplicationHelper
       HTML
     end
   end
+  # rubocop:enable Layout/LineLength
 end
