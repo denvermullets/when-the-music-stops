@@ -1,22 +1,22 @@
 source 'https://rubygems.org'
 
-ruby '3.3.0'
+ruby '3.3.5'
 
-gem 'rails', '~> 7.1.3'
+gem 'rails', '~> 8.0.1'
 
 gem 'aws-sdk-s3', require: false
-gem 'bcrypt', '~> 3.1.7'
-gem 'image_processing', '~> 1.2'
+gem 'bcrypt', '~> 3.1.20'
+gem 'image_processing', '~> 1.13.0'
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'pagy', '~> 6.4'
-gem 'pg', '~> 1.1'
+gem 'pagy', '~> 9.3.3'
+gem 'pg', '~> 1.5.9'
 gem 'pry'
-gem 'puma', '>= 5.0'
-gem 'redis', '>= 4.0.1'
+gem 'puma', '>= 6.5.0'
+gem 'redis', '>= 5.3.0'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 2.3'
+gem 'tailwindcss-rails', '~> 3.1.0'
 gem 'turbo-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -42,6 +42,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem 'spring'
+  gem 'brakeman'
+  gem 'rubocop'
 end
 
 group :test do
