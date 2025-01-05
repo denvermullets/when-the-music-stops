@@ -10,20 +10,23 @@ module ApplicationHelper
   end
 
   def line_break(text)
-    html_escape(text).gsub("\n", '<br>').html_safe
-  end
-
-  def embed_links(text)
-    # url embeds last to avoid breaking other embeds
-    text = embed_spotify(text)
-    text = embed_youtube(text)
-    text = embed_bandcamp(text)
-    text = embed_ballot_box(text)
-
-    embed_url_image(text)
+    html_escape(text).gsub("\n", '<br>')
   end
 
   # rubocop:disable Layout/LineLength
+  def embed_links(text)
+    sanitized_text = sanitize(text, tags: %w[iframe img a br], attributes: %w[src href width height frameborder allow allowfullscreen style class seamless])
+    # Apply embedding transformations
+    sanitized_text = embed_spotify(sanitized_text)
+    sanitized_text = embed_youtube(sanitized_text)
+    sanitized_text = embed_bandcamp(sanitized_text)
+    # sanitized_text =
+    embed_ballot_box(sanitized_text)
+
+    # Finally sanitize again in case of unexpected HTML injection
+    sanitize(embed_url(sanitized_text), tags: %w[iframe img a br], attributes: %w[src href width height frameborder allow allowfullscreen style class seamless])
+  end
+
   def embed_spotify(text)
     spotify_url_regex = %r{https://open.spotify.com/(album|track|playlist)/([a-zA-Z0-9]+)(\?.*)?}
 
@@ -52,14 +55,11 @@ module ApplicationHelper
     end
   end
 
-  def embed_url_image(text)
+  def embed_url(text)
     url_regex = %r{(?<!src=")(https?://[^\s<]+)}
-    image_regex = /\.(png|jpg|jpeg|gif)$/
 
     text.gsub(url_regex) do |match|
-      if match =~ image_regex
-        "<img src=\"#{match}\" style=\"max-width: 500px; max-height: 500px;\" />"
-      else
+      if match =~ url_regex
         "<a href=\"#{match}\" class='text-sky-500' target='_blank' rel='noopener noreferrer'>#{match}</a>"
       end
     end
