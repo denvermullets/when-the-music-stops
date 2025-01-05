@@ -4,6 +4,11 @@ class ForumsController < ApplicationController
     last_comment = Comment.last
     last_topic = Topic.last
 
+    set_meta_tags(
+      title: 'index',
+      description: 'check out these sub forums'
+    )
+
     # this will only be nil if it's a fresh wtms instance
     last_post = if last_topic.nil? || last_comment.nil?
                   nil

@@ -160,6 +160,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.22.1)
+      actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
@@ -272,7 +274,7 @@ GEM
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
-    rubyzip (2.4)
+    rubyzip (2.4.1)
     securerandom (0.4.1)
     selenium-webdriver (4.27.0)
       base64 (~> 0.2)
@@ -347,6 +349,7 @@ DEPENDENCIES
   image_processing (~> 1.13.0)
   importmap-rails
   jbuilder
+  meta-tags
   pagy (~> 9.3.3)
   pg (~> 1.5.9)
   pry

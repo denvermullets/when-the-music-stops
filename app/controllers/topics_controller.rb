@@ -28,20 +28,27 @@ class TopicsController < ApplicationController
     topic = Topic.find_by(slug: params[:topic_slug])
     @pagy, comments = pagy(Comment.where(topic:))
 
-    if current_user
-      receipt = UserTopicReceipt.find_by(topic:, user: current_user)
+    set_meta_tags(
+      title: topic.title,
+      description: topic.body
+    )
 
-      if receipt
-        receipt.update_last_read
-      else
-        UserTopicReceipt.create(topic:, user: current_user, last_read: Time.current)
-      end
-    end
+    read_receipt(topic) if current_user
 
     render :show, locals: { topic:, comments: }
   end
 
   private
+
+  def read_receipt(topic)
+    receipt = UserTopicReceipt.find_by(topic:, user: current_user)
+
+    if receipt
+      receipt.update_last_read
+    else
+      UserTopicReceipt.create(topic:, user: current_user, last_read: Time.current)
+    end
+  end
 
   def topic_params
     params.require(:topic).permit(:title, :body, :forum_id, :user_id, :sub_forum_id)
