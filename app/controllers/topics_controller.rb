@@ -30,8 +30,7 @@ class TopicsController < ApplicationController
 
     set_meta_tags(
       title: topic.title,
-      description: topic.body,
-      # keywords: @article.tag_list,
+      description: topic.body
     )
 
     read_receipt(topic) if current_user
