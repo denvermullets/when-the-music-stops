@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   include Pagy::Backend
 
+  # rubocop:disable Metrics/AbcSize
   def create
     topic = Topic.new(topic_params)
 
@@ -19,9 +20,9 @@ class TopicsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
-  def index
-  end
+  def index; end
 
   def show
     topic = Topic.find_by(slug: params[:topic_slug])

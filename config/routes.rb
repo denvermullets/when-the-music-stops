@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'forums#index'
 
   namespace :admin do
-    constraints ->(req) {
+    constraints lambda { |req|
       current_user = User.find_by(id: req.session[:user_id])
       current_user&.admin?
     } do
