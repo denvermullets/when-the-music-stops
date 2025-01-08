@@ -21,7 +21,7 @@ module ApplicationHelper
     sanitized_text = embed_youtube(sanitized_text)
     sanitized_text = embed_bandcamp(sanitized_text)
     # sanitized_text =
-    embed_ballot_box(sanitized_text)
+    sanitized_text = embed_ballot_box(sanitized_text)
 
     # Finally sanitize again in case of unexpected HTML injection
     sanitize(embed_url(sanitized_text), tags: %w[iframe img a br], attributes: %w[src href width height frameborder allow allowfullscreen style class seamless])
