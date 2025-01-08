@@ -20,7 +20,6 @@ module ApplicationHelper
     sanitized_text = embed_spotify(sanitized_text)
     sanitized_text = embed_youtube(sanitized_text)
     sanitized_text = embed_bandcamp(sanitized_text)
-    # sanitized_text =
     sanitized_text = embed_ballot_box(sanitized_text)
 
     # Finally sanitize again in case of unexpected HTML injection
