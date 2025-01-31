@@ -17,7 +17,7 @@ gem 'puma', '>= 6.5.0'
 gem 'redis', '>= 5.3.0'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 3.1.0'
+gem 'tailwindcss-rails', '~> 3.3.1'
 gem 'turbo-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
