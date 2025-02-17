@@ -6,7 +6,7 @@ gem 'rails', '~> 8.0.1'
 
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.20'
-gem 'image_processing', '~> 1.13.0'
+gem 'image_processing', '~> 1.14.0'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'meta-tags'
