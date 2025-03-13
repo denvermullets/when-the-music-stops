@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.3.5'
 
-gem 'rails', '~> 8.0.1'
+gem 'rails', '~> 8.0.2'
 
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.20'
