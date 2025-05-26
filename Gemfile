@@ -2,22 +2,22 @@ source 'https://rubygems.org'
 
 ruby '3.3.5'
 
-gem 'rails', '~> 8.0.1'
+gem 'rails', '~> 8.0.2'
 
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.20'
-gem 'image_processing', '~> 1.13.0'
+gem 'image_processing', '~> 1.14.0'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'meta-tags'
-gem 'pagy', '~> 9.3.3'
+gem 'pagy', '~> 9.3.4'
 gem 'pg', '~> 1.5.9'
 gem 'pry'
-gem 'puma', '>= 6.5.0'
-gem 'redis', '>= 5.3.0'
+gem 'puma', '>= 6.6.0'
+gem 'redis', '>= 5.4.0'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 3.1.0'
+gem 'tailwindcss-rails', '~> 4.2.3'
 gem 'turbo-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

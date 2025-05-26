@@ -39,7 +39,7 @@
                       <% if user.id == current_user&.id %>
                         <%= form.text_field :location,
                         value: user.location || '',
-                        class: 'form-input w-full h-8 text-slate-50 text-md bg-zinc-950 border-gray-700 focus:border-slate-500 focus:ring-1 focus:ring-slate-500',
+                        class: 'border border-slate-700 px-4 w-full h-8 text-slate-50 text-md bg-zinc-950 border-gray-700 focus:border-slate-500 focus:ring-1 focus:ring-slate-500',
                         placeholder: 'location'
                       %>
                       <% else %>
