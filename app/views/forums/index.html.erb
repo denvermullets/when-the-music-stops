@@ -31,7 +31,7 @@
                   <div class='p-4 border-t border-gray-700 md:border-l md:border-r '>
                     <h1 class='text-md'>
                       <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum),
-                        class: "#{sub_forum.unread_posts?(current_user) ? 'text-sky-400 font-semibold' : ''} hover:text-sky-500"
+                        class: "#{(sub_forum.unread_posts?(current_user) || (!current_user && sub_forum.topics.count.positive?)) ? 'text-sky-400 font-semibold' : ''} hover:text-sky-500"
                       %>
                     </h1>
                   </div>
@@ -47,7 +47,7 @@
                     <div class='p-4 border-t border-gray-700 '>
                       <h1 class='text-md hover:text-sky-500 '>
                         <%= link_to sub_forum.name, forum_sub_forum_path(forum, sub_forum),
-                          class: "#{sub_forum.unread_posts?(current_user) ? 'text-sky-400 font-semibold' : ''} hover:text-sky-500"
+                          class: "#{(sub_forum.unread_posts?(current_user) || (!current_user && sub_forum.topics.count.positive?)) ? 'text-sky-400 font-semibold' : ''} hover:text-sky-500"
                         %>
                       </h1>
                     </div>
