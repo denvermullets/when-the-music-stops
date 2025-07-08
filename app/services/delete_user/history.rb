@@ -27,7 +27,7 @@ module DeleteUser
       topics = Topic.where(user_id: @user.id)
       topics.each do |topic|
         UserTopicReceipt.where(topic_id: topic.id).each(&:delete)
-        topic.comments.count.positive? ? delete_other_comments(topic) : topic.delete
+        topic.comments.any? ? delete_other_comments(topic) : topic.delete
       end
     end
 
