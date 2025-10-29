@@ -7,10 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>
-    <!-- include React and ReactDOM globally, sucks to load it this way but want to see if it's more stable -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://ballotboxballot.s3.amazonaws.com/ballot-box-ballot.umd.cjs" onerror="console.error('Failed to load ballot-box script');"></script>
   </head>
   <body class="bg-zinc-950">
     <main class="flex flex-col">
