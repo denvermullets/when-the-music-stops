@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   def create
     topic = Topic.new(topic_params)
 
-    if topic.save
+    if current_user.post_count > 5 && topic.save
       post_count = topic.user.post_count + 1
       topic.user.update(post_count:)
       topic.update(recent_activity: Time.current)
