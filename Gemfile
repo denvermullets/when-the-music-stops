@@ -5,7 +5,7 @@ ruby '3.3.5'
 gem 'rails', '~> 8.1.1'
 
 gem 'aws-sdk-s3', require: false
-gem 'bcrypt', '~> 3.1.20'
+gem 'bcrypt', '~> 3.1.21'
 gem 'image_processing', '~> 1.14.0'
 gem 'importmap-rails'
 gem 'jbuilder'
